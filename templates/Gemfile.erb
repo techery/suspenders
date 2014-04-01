@@ -5,7 +5,6 @@ ruby '<%= RUBY_VERSION %>'
 gem 'airbrake'
 gem 'bourbon'
 gem 'coffee-rails'
-gem 'delayed_job_active_record', '>= 4.0.0'
 gem 'email_validator'
 gem 'flutie'
 gem 'high_voltage'
@@ -20,6 +19,8 @@ gem 'simple_form'
 gem 'title'
 gem 'uglifier'
 gem 'unicorn'
+gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development do
   gem 'foreman'

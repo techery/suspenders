@@ -29,10 +29,10 @@ module Suspenders
       invoke :create_suspenders_views
       invoke :setup_coffeescript
       invoke :configure_app
+      invoke :configure_routes
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
-      invoke :remove_routes_comment_lines
       invoke :setup_git
       invoke :setup_database
       invoke :create_heroku_apps
@@ -77,7 +77,6 @@ module Suspenders
       build :generate_rspec
       build :configure_rspec
       build :use_spring_binstubs
-      build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_spec_support_features
       build :configure_travis
@@ -119,6 +118,13 @@ module Suspenders
       build :setup_default_rake_task
       build :configure_unicorn
       build :setup_foreman
+      build :configure_background_jobs
+    end
+
+    def configure_routes
+      say 'Configuring routes'
+      build :remove_routes_comment_lines
+      build :setup_sidekiq_web
     end
 
     def setup_stylesheets
@@ -166,10 +172,6 @@ module Suspenders
     def customize_error_pages
       say 'Customizing the 500/404/422 pages'
       build :customize_error_pages
-    end
-
-    def remove_routes_comment_lines
-      build :remove_routes_comment_lines
     end
 
     def outro

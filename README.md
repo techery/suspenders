@@ -31,8 +31,7 @@ It includes application gems like:
 
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
-* [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
-  processing
+* [Sidekiq](https://github.com/mperham/sidekiq) for background processing
 * [Email Validator](https://github.com/balexand/email_validator) for email
   validation
 * [Flutie](https://github.com/thoughtbot/flutie) for and `body_class` view

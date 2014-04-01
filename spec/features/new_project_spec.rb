@@ -20,6 +20,16 @@ feature 'Suspend a new project with default configuration' do
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 
+  scenario 'Sidekiq::Web is mounted in admin namespace' do
+    run_suspenders
+
+    Dir.chdir(project_path) do
+      Bundler.with_clean_env do
+        expect(`rake routes`).to include('/admin/sidekiq')
+      end
+    end
+  end
+
   if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
     scenario '.ruby-version does not include patchlevel for Ruby 2.1.0+' do
       run_suspenders

@@ -174,9 +174,8 @@ end
       run 'bundle exec spring binstub --all'
     end
 
-    def configure_background_jobs_for_rspec
-      copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
-      run 'rails g delayed_job:active_record'
+    def configure_background_jobs
+      copy_file 'sidekiq.yml', 'config/sidekiq.yml'
     end
 
     def configure_time_zone
@@ -300,6 +299,19 @@ git remote add production git@heroku.com:#{app_name}-production.git
       replace_in_file 'config/routes.rb',
         /Rails.application\.routes\.draw do.*end/m,
         "Rails.application.routes.draw do\nend"
+    end
+
+    def setup_sidekiq_web
+      sidekiq_routes = <<-RUBY
+  namespace :admin do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
+      RUBY
+
+      prepend_file 'config/routes.rb', "require 'sidekiq/web'\n"
+      inject_into_file 'config/routes.rb',
+        sidekiq_routes,
+        :after => "Rails.application.routes.draw do\n"
     end
 
     def disable_xml_params
