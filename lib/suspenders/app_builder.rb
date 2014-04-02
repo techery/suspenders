@@ -214,8 +214,12 @@ end
       generate 'rspec:install'
     end
 
-    def configure_unicorn
-      copy_file 'unicorn.rb', 'config/unicorn.rb'
+    def configure_puma
+      copy_file 'puma.rb', 'config/puma.rb'
+    end
+
+    def configure_database_connection
+      copy_file 'database_connection.rb', 'config/initializers/database_connection.rb'
     end
 
     def setup_foreman

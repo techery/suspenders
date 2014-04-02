@@ -46,7 +46,7 @@ It includes application gems like:
   avoid accidentally sending emails to real people from staging
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup
   and style
-* [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
+* [Puma](https://github.com/puma/puma) to serve HTTP requests
 * [Title](https://github.com/calebthompson/title) for storing titles in
   translations
 
@@ -98,7 +98,7 @@ Suspenders also comes with:
 
 Suspenders fixes several of Rails' [insecure defaults]:
 
-* Suspenders uses Unicorn instead of WEBrick, allowing less verbose Server
+* Suspenders uses Puma instead of WEBrick, allowing less verbose Server
   headers.
 * Suspenders is configured to pull your application secret key base from an
   environment variable, which means you won't need to risk placing it in version
